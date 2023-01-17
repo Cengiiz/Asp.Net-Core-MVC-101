@@ -12,6 +12,16 @@ namespace MyAspNetCoreApp.Web.Controllers
         {
             return RedirectToAction("Index");
         }
+        public IActionResult ParametreView(int id)
+        {
+            return RedirectToAction("JsonResultParanetre", "Ornek", new {id=id});
+        }
+        public IActionResult JsonResultParanetre(int id)
+        {
+            return Json(new { Id=id});
+        }
+
+
 
         public IActionResult ContentResult()
         {
