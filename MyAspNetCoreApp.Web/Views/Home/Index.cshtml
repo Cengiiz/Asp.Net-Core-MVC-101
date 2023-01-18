@@ -1,6 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<link rel="stylesheet" href="/css/example.css" asp-append-version="true" />
+@section MyCss
+{
+    <style type="text/css">
+     .h1dunya{
+         coler:red;
+         background-color:blue;
+     }
+     
+    </style>
+}
+
 
 @section Scripts
 {
@@ -26,6 +38,11 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+<h1 class="h1dunya">Merhaba Dunya</h1>
+
+<h2 class="example">Harici css</h2>
 
 <partial name="_MenuPartialView"></partial><!--Kullanilmasi tavsiye edilen-->
 @await Html.PartialAsync("_MenuPartialView")
