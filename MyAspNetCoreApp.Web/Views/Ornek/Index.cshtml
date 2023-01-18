@@ -1,6 +1,7 @@
 ﻿@using MyAspNetCoreApp.Web.Controllers
 @{
     ViewData["Title"] = "Index";
+    var alert = "bu bir uyari mesajidir";
 }
 @model List<Product>;
 
@@ -33,6 +34,35 @@
     <p>@item.Id-@item.Name</p>
 }
 
+<div>Gunun tarihi: @DateTime.Now.ToShortDateString()</div>
 
+@{
+    var datetime = DateTime.Now.ToShortDateString();
+    var message = "Merhaba";
+    @:bugunun tarihi:@datetime
+   <text>Bugunun tarihi : @datetime</text>
+    <div>mesaj: @message</div>
+}
 
+@if (false)
+{
+    <p>Dogru</p>
+}
+else if(DateTime.IsLeapYear(DateTime.Now.Year))
+{
+    <p>artik yil</p>
+}
+else
+{
+    <h1>@alert</h1>
+    <p>yanlis</p>
+}
+@for (int i = 0; i < 10; i++)
+{
+    <p>@i</p>
+}
 
+@foreach (var item in Enumerable.Range(1,10).ToList())
+{
+    <p>@item</p>
+}
