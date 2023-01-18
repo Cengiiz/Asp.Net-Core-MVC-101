@@ -11,13 +11,13 @@ namespace MyAspNetCoreApp.Web.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.name = "Asp.Net Core ";
+            ViewBag.name = "Asp.Net Core ";//controllerdan viewe data aktarmak icin viewbag ve view data kullaniliyor
             ViewData["age"] = 30;
-            ViewData["names"] = new List<string>() { "ahmet", "mehmet", "hasan" };
+            ViewData["names"] = new List<string>() { "ahmet", "mehmet", "hasan" };//sonradan yayinlanmis 
 
             ViewBag.person = new { id = 1, name = "ahmet", age = 23 };
 
-            TempData["animals"] = new List<string>() { "dog", "cat", "bird" };
+            TempData["animals"] = new List<string>() { "dog", "cat", "bird" };//farkli viewlere aktarma yapilabilir
 
 
             var productList = new List<Product>()
@@ -27,7 +27,7 @@ namespace MyAspNetCoreApp.Web.Controllers
                 new(){ Id=3, Name="Silgi"}
             };
 
-            return View(productList);
+            return View(productList);//viewmodel olarak gonderilen buyuk data
         }
         public IActionResult Index2()
         {
