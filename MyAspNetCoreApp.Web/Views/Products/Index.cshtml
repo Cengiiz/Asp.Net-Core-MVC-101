@@ -12,6 +12,7 @@
          <th>Name</th>
          <th>Price</th>
          <th>Stoc</th>
+         <th>Remove</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
              <td>@item.Name</td>
              <td>@item.Price</td>
              <td>@item.Stock</td>
+             <td><a asp-controller="products" asp-action="remove" asp-route-id="@item.Id">Delete</a></td>
             </tr>
         }
     </tbody>
