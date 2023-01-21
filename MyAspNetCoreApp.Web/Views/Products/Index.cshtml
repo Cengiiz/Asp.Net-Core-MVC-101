@@ -5,6 +5,7 @@
 }
 @model List<Product>
 <h1>Urunler</h1>
+<a asp-controller="products" asp-action="add">New Produt</a>
 <table class="table">
     <thead>
         <tr>
@@ -24,6 +25,7 @@
              <td>@item.Price</td>
              <td>@item.Stock</td>
              <td><a asp-controller="products" asp-action="remove" asp-route-id="@item.Id">Delete</a></td>
+             <td><a asp-controller="products" asp-action="update" asp-route-id="@item.Id">Update</a></td>
             </tr>
         }
     </tbody>
