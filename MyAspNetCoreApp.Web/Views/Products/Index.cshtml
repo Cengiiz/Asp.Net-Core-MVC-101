@@ -1,15 +1,29 @@
 ﻿
 @{
-    Layout = null;
+    ViewData["Title"] = "Products";
+    Layout = "_Layout";
 }
+@model List<Product>
+<h1>Urunler</h1>
+<table class="table">
+    <thead>
+        <tr>
+         <th>Id</th>
+         <th>Name</th>
+         <th>Price</th>
+         <th>Stoc</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+             <td>@item.Id</td>
+             <td>@item.Name</td>
+             <td>@item.Price</td>
+             <td>@item.Stock</td>
+            </tr>
+        }
+    </tbody>
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-</body>
-</html>
+</table>
