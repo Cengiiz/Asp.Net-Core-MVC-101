@@ -5,7 +5,7 @@
 namespace MyAspNetCoreApp.Web.Migrations
 {
     /// <inheritdoc />
-    public partial class RemoveWidthdAndHeightForProduct2 : Migration
+    public partial class RemoveWidthAndHeightForProduct : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

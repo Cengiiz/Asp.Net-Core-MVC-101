@@ -43,7 +43,7 @@ namespace MyAspNetCoreApp.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }
