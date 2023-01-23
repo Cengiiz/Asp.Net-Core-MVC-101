@@ -14,14 +14,14 @@ namespace MyAspNetCoreApp.Web.Controllers
             _productRepository = new ProductRepository();
             _context = context;
             //Linq method
-            if(!_context.Products.Any())
-            {
-                _context.Products.Add(new Product { Name = "Kalem 1", Price = 100, Stock = 300, Color = "Red"});
-                _context.Products.Add(new Product { Name = "Kalem 2", Price = 200, Stock = 400, Color = "Red"});
-                _context.Products.Add(new Product { Name = "Kalem 3", Price = 300, Stock = 500, Color = "Red"});
-                _context.SaveChanges();
-            }
-            
+            //if (!_context.Products.Any())
+            //{
+            //    _context.Products.Add(new Product { Name = "Kalem 1", Price = 100, Stock = 300, Color = "Red" });
+            //    _context.Products.Add(new Product { Name = "Kalem 2", Price = 200, Stock = 400, Color = "Red" });
+            //    _context.Products.Add(new Product { Name = "Kalem 3", Price = 300, Stock = 500, Color = "Red" });
+            //    _context.SaveChanges();
+            //}
+
         }
 
         public IActionResult Index()
@@ -43,10 +43,39 @@ namespace MyAspNetCoreApp.Web.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Add(/*string Name, decimal Price, int Stock, string Color*/ Product newProduct)
+        {
+            //1. method
+            //var name = HttpContext.Request.Form["Name"].ToString();
+            //var price = decimal.Parse(HttpContext.Request.Form["Price"].ToString());
+            //var stock = int.Parse(HttpContext.Request.Form["Stock"].ToString());
+            //var color = HttpContext.Request.Form["Color"].ToString();
+            //2. method
+            //Product product = new Product() { Name=Name,Price=Price,Stock=Stock,Color=Color};
+
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
+
+            TempData["status"] = "Product successfully added";
+
+            return RedirectToAction("Index");
+        }
 
         public IActionResult Update(int id)
         {
-            return View();
+            var product=_context.Products.Find(id);
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Product newProduct,int id)
+        {
+            
+            _context.Products.Update(newProduct);
+            _context.SaveChanges();
+            TempData["status"] = "Product successfully updated";
+            return RedirectToAction("Index");
         }
     }
 }
