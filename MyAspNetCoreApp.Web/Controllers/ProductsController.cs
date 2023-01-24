@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyAspNetCoreApp.Web.Helpers;
 using MyAspNetCoreApp.Web.Models;
 
 namespace MyAspNetCoreApp.Web.Controllers
@@ -7,12 +8,14 @@ namespace MyAspNetCoreApp.Web.Controllers
     {
         private AppDbContext _context;
         private readonly ProductRepository _productRepository;
+        private IHelper _helper;
 
-        public ProductsController(AppDbContext context)//dependency injection pattern
+        public ProductsController(AppDbContext context, IHelper helper)//dependency injection pattern
         {
             //DI Container
             _productRepository = new ProductRepository();
             _context = context;
+            _helper = helper;
             //Linq method
             //if (!_context.Products.Any())
             //{
@@ -24,8 +27,13 @@ namespace MyAspNetCoreApp.Web.Controllers
 
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromServices]IHelper helper2)//method injection
         {
+            var text = "Asp.Net";
+            var upperText = _helper.Upper(text);
+            //IHelper helper=new Helper(); false
+            var status = _helper.Equals(helper2);
+
             var products = _context.Products.ToList();
             return View(products);
         }
