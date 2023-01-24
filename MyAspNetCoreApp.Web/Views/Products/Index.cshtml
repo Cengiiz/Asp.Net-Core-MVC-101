@@ -22,8 +22,7 @@
          <th>Price</th>
          <th>Stoc</th>
          <th>Color</th>
-         <th>Width</th>
-         <th>Height</th>
+         <th>Statu</th>
          <th>Remove</th>
          <th>Update</th>
         </tr>
@@ -37,6 +36,7 @@
              <td>@item.Price</td>
              <td>@item.Stock</td>
              <td>@item.Color</td>
+                <td>@item.IsPublish</td>
              <!--<td>item.Width</td>
                 <td>item.Height</td> -->
              <td><a asp-controller="products" asp-action="remove" asp-route-id="@item.Id">Delete</a></td>
