@@ -18,15 +18,29 @@
         <label for="Stock" class="form-label">Stock :</label>
         <input class="form-control" asp-for="Stock">
     </div>
-    <div class="mb-3">
+    <div class="mb-5">
         <label for="Color" class="form-label">Color :</label>
         <input class="form-control" asp-for="Color">
     </div>
-    <div class="form-check">
-        <input class="form-check-input" asp-for="IsPublish">
-        <label class="form-check-label" for="flexCheckDefault">
-            Is publish?
-        </label>
+    <div class="mb-5">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="IsPublish">
+            <label class="form-check-label" for="flexCheckDefault">
+                Is publish?
+            </label>
+        </div>
+    </div>
+    <div class="mb-5">
+        <span>How many months will the product be on sale?</span>
+    @foreach (var item in ViewBag.Expire as Dictionary<string, int>)
+    {
+          <div class="form-check">
+          <input class="form-check-input" type="radio" asp-for="Expire"value="@item.Value" >
+          <label class="form-check-label" for="flexRadioDefault1">
+            @item.Key
+          </label>
+          </div>
+    }
     </div>
     <button class="btn btn-primary" type="submit">New Product</button>
 </form>
