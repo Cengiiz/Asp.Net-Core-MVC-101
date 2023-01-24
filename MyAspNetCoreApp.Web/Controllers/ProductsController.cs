@@ -10,7 +10,7 @@ namespace MyAspNetCoreApp.Web.Controllers
         private readonly ProductRepository _productRepository;
         private IHelper _helper;
 
-        public ProductsController(AppDbContext context, IHelper helper)//dependency injection pattern
+        public ProductsController(AppDbContext context, IHelper helper)//dependency injection pattern-constructor injection
         {
             //DI Container
             _productRepository = new ProductRepository();
