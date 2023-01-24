@@ -7,25 +7,25 @@
 
 <form asp-controller="products" asp-action="add" method="post">
     <div class="mb-3">
-        <label for="Name" class="form-label">Name :</label>
+        <label asp-for="Name" class="form-label">Name :</label>
         <input  class="form-control" asp-for="Name">
     </div>
     <div class="mb-3">
-        <label for="Price" class="form-label">Price :</label>
+        <label asp-for="Price" class="form-label">Price :</label>
         <input class="form-control" asp-for="Price">
     </div>
     <div class="mb-3">
-        <label for="Stock" class="form-label">Stock :</label>
+        <label asp-for="Stock" class="form-label">Stock :</label>
         <input class="form-control" asp-for="Stock">
     </div>
     <div class="mb-5">
-        <label for="Color" class="form-label">Color :</label>
+        <label asp-for="Stock" class="form-label">Color :</label>
         <input class="form-control" asp-for="Color">
     </div>
     <div class="mb-5">
         <div class="form-check">
             <input class="form-check-input" asp-for="IsPublish">
-            <label class="form-check-label" for="flexCheckDefault">
+            <label class="form-check-label" asp-for="IsPublish">
                 Is publish?
             </label>
         </div>
@@ -35,8 +35,8 @@
     @foreach (var item in ViewBag.Expire as Dictionary<string, int>)
     {
           <div class="form-check">
-          <input class="form-check-input" type="radio" asp-for="Expire"value="@item.Value" >
-          <label class="form-check-label" for="flexRadioDefault1">
+          <input class="form-check-input" type="radio" id="@(item.Value)Expire"asp-for="Expire"value="@item.Value" >
+                <label class="form-check-label" asp-for="Expire" for="@(item.Value)Expire">
             @item.Key
           </label>
           </div>

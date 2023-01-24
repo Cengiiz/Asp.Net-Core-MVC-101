@@ -9,22 +9,45 @@
 
 <form asp-controller="products" asp-action="update" method="post">
     
-    <label>Id</label>
-    <br />
-    <p>@Model.Id</p>
-    <input type="hidden" asp-for="Id" />
-    <br />
-    <label>Name</label>
-    <input type="text" asp-for="Name"/>
-    <br />
-    <label>Price</label>
-    <input type="text" asp-for="Price" />
-    <br />
-    <label>Stock</label>
-    <input type="text" asp-for="Stock" />
-    <br />
-    <label>Color</label>
-    <input type="text" asp-for="Color" />
-    <br />
-    <button type="submit">Update </button>
+    <div class="mb-3">
+        <label>Id :</label>
+        <label asp-for="Id" class="form-label">@Model.Id :</label>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name :</label>
+        <input class="form-control" asp-for="Name">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label">Price :</label>
+        <input class="form-control" asp-for="Price">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Stock" class="form-label">Stock :</label>
+        <input class="form-control" asp-for="Stock">
+    </div>
+    <div class="mb-5">
+        <label asp-for="Stock" class="form-label">Color :</label>
+        <input class="form-control" asp-for="Color">
+    </div>
+    <div class="mb-5">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="IsPublish">
+            <label class="form-check-label" asp-for="IsPublish">
+                Is publish?
+            </label>
+        </div>
+    </div>
+    <div class="mb-5">
+        <span>How many months will the product be on sale?</span>
+        @foreach (var item in ViewBag.Expire2 as Dictionary<string, int>)
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="@(item.Value)Expire" asp-for="Expire" value="@item.Value">
+                <label class="form-check-label" asp-for="Expire" for="@(item.Value)Expire">
+                    @item.Key
+                </label>
+            </div>
+        }
+    </div>
+    <button class="btn btn-primary" type="submit">Update</button>
 </form>
