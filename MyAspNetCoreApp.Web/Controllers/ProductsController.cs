@@ -51,12 +51,12 @@ namespace MyAspNetCoreApp.Web.Controllers
         {
             ViewBag.Expire = new Dictionary<string, int>()
             {
-                {"1. Ay",1},
-                {"3. Ay",3},
-                {"6. Ay",6},
-                {"12. Ay",12}
+                {"1. Month",1},
+                {"3. Months",3},
+                {"6. Months",6},
+                {"12. Months",12}
             };
-            //ViewBag.Expire = new List<string>() { "1. Ay", "3. Ay", "6. Ay", "12. Ay" };
+            //ViewBag.Expire = new List<string>() { "1. Month", "3. Months", "6. Months", "12. Months" };
 
             return View();
         }
