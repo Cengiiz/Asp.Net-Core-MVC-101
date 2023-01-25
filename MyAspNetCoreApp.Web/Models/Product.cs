@@ -13,5 +13,6 @@
         public bool IsPublish { get; set; }
         public int Expire { get; set; }
         public string Description { get; set; }
+        public DateTime? PublishDate { get; set; }
     }
 }
