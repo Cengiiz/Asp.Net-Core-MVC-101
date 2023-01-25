@@ -161,5 +161,18 @@ namespace MyAspNetCoreApp.Web.Controllers
             TempData["status"] = "Product successfully updated";
             return RedirectToAction("Index");
         }
+        [AcceptVerbs("Get","Post")]
+        public IActionResult HasProductName(string Name)
+        {
+            var anyProduct = _context.Products.Any(x => x.Name.ToLower() == Name.ToLower());
+            if(anyProduct)
+            {
+                return Json("This product is in the database");
+            }
+            else
+            {
+                return Json(true);
+            }
+        }
     }
 }
