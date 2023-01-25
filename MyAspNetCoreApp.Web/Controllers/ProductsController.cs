@@ -72,8 +72,35 @@ namespace MyAspNetCoreApp.Web.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add(/*string Name, decimal Price, int Stock, string Color*/ Product newProduct)
+        public IActionResult Add(/*string Name, decimal Price, int Stock, string Color*/ ProductViewModel newProduct)
         {
+            if (ModelState.IsValid)
+            {
+                _context.Products.Add(_mapper.Map<Product>(newProduct));
+                _context.SaveChanges();
+
+                TempData["status"] = "Product successfully added";
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Expire = new Dictionary<string, int>()
+                {
+                    {"1. Month",1},
+                    {"3. Months",3},
+                    {"6. Months",6},
+                    {"12. Months",12}
+                };
+                //ViewBag.Expire = new List<string>() { "1. Month", "3. Months", "6. Months", "12. Months" };
+                ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>() {
+
+                    new(){Data="Blue",Value="Blue"},
+                    new(){Data="Red",Value="Red"},
+                    new(){Data="Yellow",Value="Yellow"}
+                }, "Value", "Data");
+                return View();
+            }
             //1. method
             //var name = HttpContext.Request.Form["Name"].ToString();
             //var price = decimal.Parse(HttpContext.Request.Form["Price"].ToString());
@@ -82,12 +109,7 @@ namespace MyAspNetCoreApp.Web.Controllers
             //2. method
             //Product product = new Product() { Name=Name,Price=Price,Stock=Stock,Color=Color};
 
-            _context.Products.Add(newProduct);
-            _context.SaveChanges();
-
-            TempData["status"] = "Product successfully added";
-
-            return RedirectToAction("Index");
+            
         }
 
         public IActionResult Update(int id)
