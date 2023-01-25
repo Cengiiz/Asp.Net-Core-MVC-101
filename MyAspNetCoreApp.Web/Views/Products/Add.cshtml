@@ -19,8 +19,12 @@
         <input class="form-control" asp-for="Stock">
     </div>
     <div class="mb-5">
-        <label asp-for="Stock" class="form-label">Color :</label>
-        <input class="form-control" asp-for="Color">
+        <select asp-for="Color" asp-items="@ViewBag.ColorSelect" class="form-select" aria-label="Default select example">
+            <option value="">Choose color</option>
+        </select>
+        
+       @* <label asp-for="Stock" class="form-label">Color :</label>
+        <input class="form-control" asp-for="Color">*@
     </div>
     <div class="mb-5">
         <div class="form-check">

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyAspNetCoreApp.Web.Helpers;
 using MyAspNetCoreApp.Web.Models;
 
@@ -57,7 +58,12 @@ namespace MyAspNetCoreApp.Web.Controllers
                 {"12. Months",12}
             };
             //ViewBag.Expire = new List<string>() { "1. Month", "3. Months", "6. Months", "12. Months" };
+            ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>() {
 
+                new(){Data="Blue",Value="Blue"},
+                new(){Data="Red",Value="Red"},
+                new(){Data="Yellow",Value="Yellow"}
+            },"Value","Data");
             return View();
         }
         [HttpPost]
