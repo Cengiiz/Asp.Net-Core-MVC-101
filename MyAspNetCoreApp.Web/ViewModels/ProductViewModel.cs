@@ -7,6 +7,7 @@ namespace MyAspNetCoreApp.Web.ViewModels
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "The Name field is required!!!")]
+        [StringLength(50)]
         public string? Name { get; set; }
         [Required(ErrorMessage = "The Price field is required!!!")]
         [Range(1, 1000)]
@@ -20,6 +21,7 @@ namespace MyAspNetCoreApp.Web.ViewModels
         [Required(ErrorMessage = "The Expire field is required!!!")]
         public int? Expire { get; set; }
         [Required(ErrorMessage = "The Description field is required!!!")]
+        [StringLength(300,MinimumLength = 50)]
         public string? Description { get; set; }
         [Required(ErrorMessage = "The PublishDate field is required!!!")]
         public DateTime? PublishDate { get; set; }
