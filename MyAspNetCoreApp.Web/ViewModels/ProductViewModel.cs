@@ -43,9 +43,6 @@ namespace MyAspNetCoreApp.Web.ViewModels
 
         [Required(ErrorMessage = "The PublishDate field is required!!!")]
         public DateTime? PublishDate { get; set; }
-
-
-        [EmailAddress]
-        public string? EmailAddress { get; set; }
+ 
     }
 }

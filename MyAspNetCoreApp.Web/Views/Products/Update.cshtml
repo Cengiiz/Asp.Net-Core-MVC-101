@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Update";
 }
-@model Product
+@model ProductViewModel
 
 <h1>Product Update</h1>
 
@@ -16,19 +16,27 @@
     <div class="mb-3">
         <label asp-for="Name" class="form-label">Name :</label>
         <input class="form-control" asp-for="Name">
+        <span class="text-danger" asp-validation-for="Name"></span>
+
     </div>
     <div class="mb-3">
         <label asp-for="Price" class="form-label">Price :</label>
         <input class="form-control" asp-for="Price">
+        <span class="text-danger" asp-validation-for="Price"></span>
+
     </div>
     <div class="mb-3">
         <label asp-for="Stock" class="form-label">Stock :</label>
         <input class="form-control" asp-for="Stock">
+        <span class="text-danger" asp-validation-for="Stock"></span>
+
     </div>
     <div class="mb-5">
         <select asp-for="Color" asp-items="@ViewBag.ColorSelect" class="form-select" aria-label="Default select example">
             <option value="">Choose color</option>
         </select>
+        <span class="text-danger" asp-validation-for="Color"></span>
+
 
         @* <label asp-for="Stock" class="form-label">Color :</label>
         <input class="form-control" asp-for="Color">*@
@@ -50,17 +58,30 @@
             <label class="form-check-label" asp-for="Expire" for="@(item.Value)Expire">@item.Key</label>
             </div>
         }
-    </div>
+        <span class="text-danger" asp-validation-for="Expire"></span>
 
+    </div>
+ 
     <div class="form-floating mb-5">
         <textarea asp-for="Description" class="form-control" placeholder="Product Description" style="height: 100px"></textarea>
         <label asp-for="Description">Product Description</label>
+        <span class="text-danger" asp-validation-for="Description"></span>
+
     </div>
 
     <div class="mb-3">
         <label asp-for="PublishDate" class="form-label">Publish Date :</label>
         <input class="form-control" asp-for="PublishDate">
+        <span class="text-danger" asp-validation-for="PublishDate"></span>
+
     </div>
 
     <button class="btn btn-primary" type="submit">Update</button>
 </form>
+
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

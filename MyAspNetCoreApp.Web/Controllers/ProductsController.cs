@@ -149,17 +149,43 @@ namespace MyAspNetCoreApp.Web.Controllers
 
             }
 
-            return View(product);
+            return View(_mapper.Map<ProductViewModel>(product));
         }
 
         [HttpPost]
-        public IActionResult Update(Product newProduct,int id)
+        public IActionResult Update(ProductViewModel newProduct,int id)
         {
-            
-            _context.Products.Update(newProduct);
-            _context.SaveChanges();
-            TempData["status"] = "Product successfully updated";
-            return RedirectToAction("Index");
+            if(!ModelState.IsValid)
+            {
+                
+                if (newProduct != null)
+                {
+                    ViewBag.ExprieValue = newProduct.Expire;
+                    ViewBag.Expire = new Dictionary<string, int>()
+                {
+                    {"1. Month",1},
+                    {"3. Months",3},
+                    {"6. Months",6},
+                    {"12. Months",12}
+                };
+                    //ViewBag.Expire = new List<string>() { "1. Month", "3. Months", "6. Months", "12. Months" };
+                    ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>() {
+
+                    new(){Data="Blue",Value="Blue"},
+                    new(){Data="Red",Value="Red"},
+                    new(){Data="Yellow",Value="Yellow"}
+                }, "Value", "Data", newProduct.Color);
+
+                }
+                return View();
+            }
+            else
+            {
+                _context.Products.Update(_mapper.Map<Product>(newProduct));
+                _context.SaveChanges();
+                TempData["status"] = "Product successfully updated";
+                return RedirectToAction("Index");
+            }
         }
         [AcceptVerbs("Get","Post")]
         public IActionResult HasProductName(string Name)
