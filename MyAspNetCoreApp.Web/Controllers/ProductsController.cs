@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyAspNetCoreApp.Web.Helpers;
 using MyAspNetCoreApp.Web.Models;
+using MyAspNetCoreApp.Web.ViewModels;
 
 namespace MyAspNetCoreApp.Web.Controllers
 {
@@ -10,13 +12,14 @@ namespace MyAspNetCoreApp.Web.Controllers
         private AppDbContext _context;
         private readonly ProductRepository _productRepository;
         private IHelper _helper;
-
-        public ProductsController(AppDbContext context, IHelper helper)//dependency injection pattern-constructor injection
+        private readonly IMapper _mapper;
+        public ProductsController(AppDbContext context, IHelper helper, IMapper mapper)//dependency injection pattern-constructor injection
         {
             //DI Container
             _productRepository = new ProductRepository();
             _context = context;
             _helper = helper;
+            _mapper = mapper;
             //Linq method
             //if (!_context.Products.Any())
             //{
@@ -36,7 +39,9 @@ namespace MyAspNetCoreApp.Web.Controllers
             var status = _helper.Equals(helper2);
 
             var products = _context.Products.ToList();
-            return View(products);
+
+
+            return View(_mapper.Map<List<ProductViewModel>>(products));
         }
 
         public IActionResult Remove(int id)

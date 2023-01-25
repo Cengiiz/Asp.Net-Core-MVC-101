@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MyAspNetCoreApp.Web.Helpers;
 using MyAspNetCoreApp.Web.Models;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,7 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //builder.Services.AddScoped<IHelper, Helper>();
 
 builder.Services.AddTransient<IHelper, Helper>();
-    
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
     /*(sp =>
 {
     return new Helper(true);
