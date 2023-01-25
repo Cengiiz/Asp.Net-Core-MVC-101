@@ -9,8 +9,10 @@ namespace MyAspNetCoreApp.Web.ViewModels
         [Required(ErrorMessage = "The Name field is required!!!")]
         public string? Name { get; set; }
         [Required(ErrorMessage = "The Price field is required!!!")]
+        [Range(1, 1000)]
         public decimal? Price { get; set; }
         [Required(ErrorMessage = "The Stock field is required!!!")]
+        [Range(1,200)]
         public int? Stock { get; set; }
         [Required(ErrorMessage = "The Color field is required!!!")]
         public string? Color { get; set; }
