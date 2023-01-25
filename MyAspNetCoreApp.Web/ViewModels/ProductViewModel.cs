@@ -25,5 +25,7 @@ namespace MyAspNetCoreApp.Web.ViewModels
         public string? Description { get; set; }
         [Required(ErrorMessage = "The PublishDate field is required!!!")]
         public DateTime? PublishDate { get; set; }
+        [EmailAddress]
+        public string? EmailAddress { get; set; }
     }
 }
