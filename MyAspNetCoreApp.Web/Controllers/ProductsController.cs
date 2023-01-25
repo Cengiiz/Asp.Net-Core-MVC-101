@@ -96,7 +96,6 @@ namespace MyAspNetCoreApp.Web.Controllers
             {
                 try
                 {
-                    throw new Exception("db exception");
                     _context.Products.Add(_mapper.Map<Product>(newProduct));
                     _context.SaveChanges();
 
