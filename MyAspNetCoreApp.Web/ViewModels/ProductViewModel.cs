@@ -11,6 +11,7 @@ namespace MyAspNetCoreApp.Web.ViewModels
         public string? Name { get; set; }
         [Required(ErrorMessage = "The Price field is required!!!")]
         [Range(1, 1000)]
+        [RegularExpression(@"^[0-9]+(\.[0-9]{1,2})",ErrorMessage = "The field Price must match the regular expression. 15.25")]
         public decimal? Price { get; set; }
         [Required(ErrorMessage = "The Stock field is required!!!")]
         [Range(1,200)]
