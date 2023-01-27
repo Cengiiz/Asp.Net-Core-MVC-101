@@ -13,15 +13,22 @@ namespace MyAspNetCoreApp.Web.Views.Shared.ViewComponents
             _context = context;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int type=1)
         {
             var viewmodles = _context.Products.Select(x => new ProductListComponentViewModel()
             {
                 Name=x.Name,
                 Description=x.Description
             }).ToList();
-
-            return View(viewmodles);
+            if (type==1)
+            {
+                return View("Default",viewmodles);
+            }
+            else
+            {
+                return View("Type2",viewmodles);
+            }
+            
         }
 
     }
