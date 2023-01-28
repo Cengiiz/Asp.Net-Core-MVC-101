@@ -66,6 +66,7 @@ namespace MyAspNetCoreApp.Web.Controllers
             try
             {
                 var visitor = _mapper.Map<Visitor>(visitorViewModel);
+                visitor.Created = DateTime.Now;
                 _context.Visitors.Add(visitor);
                 _context.SaveChanges();
                 TempData["result"] = "Comment saved";
