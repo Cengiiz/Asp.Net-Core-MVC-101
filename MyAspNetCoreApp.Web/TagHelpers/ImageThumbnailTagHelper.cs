@@ -2,6 +2,7 @@
 
 namespace MyAspNetCoreApp.Web.TagHelpers
 {
+    [HtmlTargetElement("thumbnail")]
     public class ImageThumbnailTagHelper:TagHelper
     {
         public string ImageSrc { get; set; }
