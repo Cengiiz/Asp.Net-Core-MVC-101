@@ -7,6 +7,7 @@ using MyAspNetCoreApp.Web.ViewModels;
 
 namespace MyAspNetCoreApp.Web.Controllers
 {
+    [Route("[controller]/[action]")]
     public class ProductsController : Controller
     {
         private AppDbContext _context;
@@ -63,6 +64,7 @@ namespace MyAspNetCoreApp.Web.Controllers
             var products=_context.Products.Find(productid);
             return View(_mapper.Map<ProductViewModel>(products));
         }
+        [HttpGet("{id}")]
         public IActionResult Remove(int id)
         {
             var product = _context.Products.Find(id);
@@ -144,7 +146,7 @@ namespace MyAspNetCoreApp.Web.Controllers
 
             
         }
-
+        [Route("{id}")]
         public IActionResult Update(int id)
         {
             var product=_context.Products.Find(id);
