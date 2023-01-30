@@ -44,12 +44,12 @@ app.UseAuthorization();
 
 
 app.MapControllerRoute(
-    name: "productgetbyid",
-    pattern: "{controller=products}/{action=pages}/{page}/{pageSize}");
+    name: "pages",
+    pattern: "{controller}/{action}/{page}/{pageSize}");
 
 app.MapControllerRoute(
-    name: "productgetbyid",
-    pattern: "{controller=products}/{action=getbyid}/{productid}");
+    name: "getbyid",
+    pattern: "{controller}/{action}/{productid}");
 
 app.MapControllerRoute(
     name: "default",

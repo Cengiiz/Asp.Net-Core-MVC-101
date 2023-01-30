@@ -45,9 +45,16 @@ namespace MyAspNetCoreApp.Web.Controllers
         }
         public IActionResult Pages(int page,int pageSize)
         {
+            //page=1 pagesize=3 =>ilk 3 kayit
+            //page=2 pagesize=3 =>ikinci 3 kayit
+            //page=3 pagesize=3 =>ucuncu 3 kayit
+
+            var products = _context.Products.Skip((page-1)*page).Take(pageSize).ToList();
             ViewBag.Page=page;
             ViewBag.PageSize=pageSize;
-            return View();
+
+
+            return View(_mapper.Map<List<ProductViewModel>>(products));
         }
         public IActionResult GetById(int productid)
         {

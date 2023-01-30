@@ -2,9 +2,58 @@
 @{
     ViewData["Title"] = "Pages";
 }
-
+@model List<ProductViewModel>
 <h1>Pages</h1>
 <h2>@ViewBag.Page</h2>
 <h2>@ViewBag.PageSize</h2>
 
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stoc</th>
+            <th>Color</th>
+            <th>Exprie</th>
+            <th>Statu</th>
+            <th>Description</th>
+            <th>Remove</th>
+            <th>Update</th>
+            <th>X</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td><a asp-controller="products" asp-action="update" asp-route-id="@item.Id">@item.Name</a></td>
+                <td>@item.Price</td>
+                <td>@item.Stock</td>
+                <td>@item.Color</td>
+                <td>@item.Expire  Month</td>
+                <td>@item.IsPublish</td>
+                <td>
+                    @if (item.Description.Length > 20)
+                    {
+                        @item.Description.Substring(0,20)
+
+                        <text>...</text>
+                    }
+                    else
+                    {
+                        @item.Description
+                    }
+                </td>
+                <!--<td>item.Width</td>
+                <td>item.Height</td> -->
+                <td><a asp-controller="products" asp-action="remove" asp-route-id="@item.Id">Delete</a></td>
+                <td><a asp-controller="products" asp-action="update" asp-route-id="@item.Id">Update</a></td>
+                <td><a asp-controller="products" asp-action="getbyid" asp-route-id="@item.Id">GetBy</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
