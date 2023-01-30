@@ -44,6 +44,11 @@ namespace MyAspNetCoreApp.Web.Controllers
             return View(_mapper.Map<List<ProductViewModel>>(products));
         }
 
+        public IActionResult GetById(int id)
+        {
+            var products=_context.Products.Find(id);
+            return View(_mapper.Map<ProductViewModel>(products));
+        }
         public IActionResult Remove(int id)
         {
             var product = _context.Products.Find(id);
