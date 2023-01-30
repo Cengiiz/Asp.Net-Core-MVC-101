@@ -43,7 +43,7 @@ namespace MyAspNetCoreApp.Web.Controllers
 
             return View(_mapper.Map<List<ProductViewModel>>(products));
         }
-        [Route("[controller]/[action]/{page}/{pageSize}")]
+        [Route("[controller]/[action]/{page}/{pageSize}",Name ="productpage")]
         public IActionResult Pages(int page,int pageSize)
         {
             //page=1 pagesize=3 =>ilk 3 kayit
@@ -57,7 +57,7 @@ namespace MyAspNetCoreApp.Web.Controllers
 
             return View(_mapper.Map<List<ProductViewModel>>(products));
         }
-        [Route("product/{productid}")]
+        [Route("products/product/{productid}", Name ="product")]
         public IActionResult GetById(int productid)
         {
             var products=_context.Products.Find(productid);

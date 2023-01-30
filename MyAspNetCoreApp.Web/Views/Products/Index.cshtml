@@ -54,11 +54,11 @@
                 <td>item.Height</td> -->
              <td><a asp-controller="products" asp-action="remove" asp-route-id="@item.Id">Delete</a></td>
              <td><a asp-controller="products" asp-action="update" asp-route-id="@item.Id">Update</a></td>
-             <td><a asp-controller="products" asp-action="getbyid" asp-route-productid="@item.Id">GetBy</a></td>
+             <td><a  asp-route="product" asp-route-productid="@item.Id">GetBy</a></td>
             </tr>
         }
     </tbody>
 
 </table>
 <a asp-controller="blog" asp-action="article" asp-route-name="makale-ismi" asp-route-id=3>Article</a>
-<a asp-controller="products" asp-action="pages" asp-route-page=1 asp-route-pageSize="3">GetBy</a>
+<a asp-route="productpage" asp-route-page=1 asp-route-pageSize="3">GetBy</a>
