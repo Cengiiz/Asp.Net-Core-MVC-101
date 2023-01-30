@@ -42,11 +42,16 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "pages",
-    pattern: "blog/{*article}",
-    defaults: new  {controller="Blog",action="Article" });
+//app.MapControllerRoute(
+//    name: "pages",
+//    pattern: "blog/{*article}",
+//    defaults: new  {controller="Blog",action="Article" });
 
+
+
+app.MapControllerRoute(
+    name: "article",
+    pattern: "{controller}/{action}/{name}/{id}");
 
 app.MapControllerRoute(
     name: "pages",
