@@ -17,7 +17,7 @@ namespace MyAspNetCoreApp.Web.Filters
         {
             var idValue = context.ActionArguments.First();
 
-            var id = Convert.ToInt16(idValue);
+            var id = (int)idValue.Value;
             var hasProduct = _context.Products.Any(x => x.Id == id);
             if (hasProduct==false) 
             {
