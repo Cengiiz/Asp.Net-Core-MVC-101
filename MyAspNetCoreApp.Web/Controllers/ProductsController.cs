@@ -32,7 +32,7 @@ namespace MyAspNetCoreApp.Web.Controllers
             //}
 
         }
-
+        [CacheResourceFilter]
         public IActionResult Index([FromServices]IHelper helper2)//method injection
         {
             var text = "Asp.Net";
