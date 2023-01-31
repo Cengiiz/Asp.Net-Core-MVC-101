@@ -40,9 +40,10 @@ namespace MyAspNetCoreApp.Web.Controllers
             };
             return View();
         }
-
+        [CustomExceptionFilter]
         public IActionResult Privacy()
         {
+            throw new Exception("Veritabani ile ilgili bir hata geldi");
             var products = _context.Products.OrderByDescending(x => x.Id).Select(x => new ProductPartialViewModel()
             {
                 Id = x.Id,
