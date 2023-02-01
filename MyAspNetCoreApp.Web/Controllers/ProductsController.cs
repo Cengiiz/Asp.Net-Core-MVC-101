@@ -114,7 +114,7 @@ namespace MyAspNetCoreApp.Web.Controllers
                 try
                 {
                     var product = _mapper.Map<Product>(newProduct);
-                    if (newProduct.Image!=null&newProduct.Image.Length>0)
+                    if (newProduct.Image!=null && newProduct.Image.Length>0)
                     {
                         var root = _fileProvider.GetDirectoryContents("wwwroot");
                         var images = root.First(x => x.Name == "images");
@@ -200,11 +200,11 @@ namespace MyAspNetCoreApp.Web.Controllers
 
             }
 
-            return View(_mapper.Map<ProductViewModel>(product));
+            return View(_mapper.Map<ProductUpdateViewModel>(product));
         }
 
         [HttpPost]
-        public IActionResult Update(ProductViewModel newProduct,int id)
+        public IActionResult Update(ProductUpdateViewModel newProduct,int id)
         {
             if(!ModelState.IsValid)
             {
@@ -213,25 +213,41 @@ namespace MyAspNetCoreApp.Web.Controllers
                 {
                     ViewBag.ExprieValue = newProduct.Expire;
                     ViewBag.Expire = new Dictionary<string, int>()
-                {
-                    {"1. Month",1},
-                    {"3. Months",3},
-                    {"6. Months",6},
-                    {"12. Months",12}
-                };
+                    {
+                        {"1. Month",1},
+                        {"3. Months",3},
+                        {"6. Months",6},
+                        {"12. Months",12}
+                    };
                     //ViewBag.Expire = new List<string>() { "1. Month", "3. Months", "6. Months", "12. Months" };
                     ViewBag.ColorSelect = new SelectList(new List<ColorSelectList>() {
 
-                    new(){Data="Blue",Value="Blue"},
-                    new(){Data="Red",Value="Red"},
-                    new(){Data="Yellow",Value="Yellow"}
-                }, "Value", "Data", newProduct.Color);
+                        new(){Data="Blue",Value="Blue"},
+                        new(){Data="Red",Value="Red"},
+                        new(){Data="Yellow",Value="Yellow"}
+                    }, "Value", "Data", newProduct.Color);
 
                 }
                 return View();
             }
             else
             {
+                if (newProduct.Image != null && newProduct.Image.Length > 0)
+                {
+                    var root = _fileProvider.GetDirectoryContents("wwwroot");
+                    var images = root.First(x => x.Name == "images");
+
+                    var randomImageName = Guid.NewGuid() + Path.GetExtension(newProduct.Image.FileName);
+                    var path = Path.Combine(images.PhysicalPath, randomImageName);
+
+                    using var stream = new FileStream(path, FileMode.Create);
+                    newProduct.Image.CopyTo(stream);
+
+
+
+                    newProduct.ImagePath = randomImageName;
+                }
+
                 _context.Products.Update(_mapper.Map<Product>(newProduct));
                 _context.SaveChanges();
                 TempData["status"] = "Product successfully updated";

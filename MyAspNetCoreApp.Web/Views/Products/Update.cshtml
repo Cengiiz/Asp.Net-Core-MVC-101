@@ -7,7 +7,7 @@
 <h1>Product Update</h1>
 
 
-<form asp-controller="products" asp-action="update" method="post">
+<form asp-controller="products" asp-action="update" method="post" enctype="multipart/form-data">
     
     <div>
         <img style="width:100px;height:100px" src="@(String.IsNullOrEmpty(Model.ImagePath)? "/images/noimage.png":"/images/"+Model.ImagePath)"/>

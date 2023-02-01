@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyAspNetCoreApp.Web.ViewModels
 {
-    public class ProductViewModel
+    public class ProductUpdateViewModel
     {
         public int Id { get; set; }
 
-        [Remote(action: "HasProductName", controller: "products")]
+         
         [Required(ErrorMessage = "The Name field is required!!!")]
         [StringLength(50)]
         public string? Name { get; set; }
