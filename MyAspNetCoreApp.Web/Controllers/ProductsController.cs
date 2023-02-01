@@ -116,14 +116,15 @@ namespace MyAspNetCoreApp.Web.Controllers
                     var root = _fileProvider.GetDirectoryContents("wwwroot");
                     var images = root.First(x => x.Name == "images");
 
-                    var path = Path.Combine(images.PhysicalPath,newProduct.Image.FileName);
+                    var randomImageName = Guid.NewGuid() + Path.GetExtension(newProduct.Image.FileName);
+                    var path = Path.Combine(images.PhysicalPath,randomImageName);
 
                     using var stream = new FileStream(path, FileMode.Create);
                     newProduct.Image.CopyTo(stream);
 
                     var product = _mapper.Map<Product>(newProduct);
 
-                    product.ImagePath= newProduct.Image.FileName;
+                    product.ImagePath= randomImageName;
 
                     _context.Products.Add(product);
                     _context.SaveChanges();

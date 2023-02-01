@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyAspNetCoreApp.Web.ViewModels
@@ -44,6 +45,7 @@ namespace MyAspNetCoreApp.Web.ViewModels
         [Required(ErrorMessage = "The PublishDate field is required!!!")]
         public DateTime? PublishDate { get; set; }
         public IFormFile Image { get; set; }
+        [ValidateNever]
         public string ImagePath { get; set; }
 
     }
