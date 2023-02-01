@@ -120,7 +120,12 @@ namespace MyAspNetCoreApp.Web.Controllers
 
                     using var stream = new FileStream(path, FileMode.Create);
                     newProduct.Image.CopyTo(stream);
-                    _context.Products.Add(_mapper.Map<Product>(newProduct));
+
+                    var product = _mapper.Map<Product>(newProduct);
+
+                    product.ImagePath= newProduct.Image.FileName;
+
+                    _context.Products.Add(product);
                     _context.SaveChanges();
 
                     TempData["status"] = "Product successfully added";

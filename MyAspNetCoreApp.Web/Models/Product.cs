@@ -14,5 +14,6 @@
         public int Expire { get; set; }
         public string Description { get; set; }
         public DateTime? PublishDate { get; set; }
+        public string ImagePath { get; set; }
     }
 }
