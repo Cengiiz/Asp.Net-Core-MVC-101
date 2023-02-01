@@ -103,10 +103,49 @@ namespace MyAspNetCoreApp.Web.Controllers
         [HttpPost]
         public IActionResult Add(/*string Name, decimal Price, int Stock, string Color*/ ProductViewModel newProduct)
         {
+            IActionResult result = null;
             /*if (!string.IsNullOrEmpty(newProduct.Name) && newProduct.Name.StartsWith("A"))
             {
                 ModelState.AddModelError(string.Empty, "Error Message");
             }*/
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var root = _fileProvider.GetDirectoryContents("wwwroot");
+                    var images = root.First(x => x.Name == "images");
+
+                    var path = Path.Combine(images.PhysicalPath,newProduct.Image.FileName);
+
+                    using var stream = new FileStream(path, FileMode.Create);
+                    newProduct.Image.CopyTo(stream);
+                    _context.Products.Add(_mapper.Map<Product>(newProduct));
+                    _context.SaveChanges();
+
+                    TempData["status"] = "Product successfully added";
+
+                    result= RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty,"Error Message");
+                    result= View();
+                }
+                
+            }
+            else
+            {
+
+                result= View();
+            }
+            //1. method
+            //var name = HttpContext.Request.Form["Name"].ToString();
+            //var price = decimal.Parse(HttpContext.Request.Form["Price"].ToString());
+            //var stock = int.Parse(HttpContext.Request.Form["Stock"].ToString());
+            //var color = HttpContext.Request.Form["Color"].ToString();
+            //2. method
+            //Product product = new Product() { Name=Name,Price=Price,Stock=Stock,Color=Color};
             ViewBag.Expire = new Dictionary<string, int>()
                 {
                     {"1. Month",1},
@@ -121,38 +160,8 @@ namespace MyAspNetCoreApp.Web.Controllers
                     new(){Data="Red",Value="Red"},
                     new(){Data="Yellow",Value="Yellow"}
                 }, "Value", "Data");
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Products.Add(_mapper.Map<Product>(newProduct));
-                    _context.SaveChanges();
+            return result;
 
-                    TempData["status"] = "Product successfully added";
-
-                    return RedirectToAction("Index");
-                }
-                catch (Exception)
-                {
-                    ModelState.AddModelError(string.Empty,"Error Message");
-                    return View();
-                }
-                
-            }
-            else
-            {
-
-                return View();
-            }
-            //1. method
-            //var name = HttpContext.Request.Form["Name"].ToString();
-            //var price = decimal.Parse(HttpContext.Request.Form["Price"].ToString());
-            //var stock = int.Parse(HttpContext.Request.Form["Stock"].ToString());
-            //var color = HttpContext.Request.Form["Color"].ToString();
-            //2. method
-            //Product product = new Product() { Name=Name,Price=Price,Stock=Stock,Color=Color};
-
-            
         }
 
         [ServiceFilter(typeof(NotFoundFilter))]
