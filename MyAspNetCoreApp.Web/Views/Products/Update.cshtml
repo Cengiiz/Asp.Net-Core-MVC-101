@@ -9,6 +9,9 @@
 
 <form asp-controller="products" asp-action="update" method="post">
     
+    <div>
+        <img style="width:100px;height:100px" src="@(String.IsNullOrEmpty(Model.ImagePath)? "/images/noimage.png":"/images/"+Model.ImagePath)"/>
+    </div>
     <div class="mb-3">
         <label>Id :</label>
         <label asp-for="Id" class="form-label">@Model.Id :</label>
@@ -75,7 +78,10 @@
         <span class="text-danger" asp-validation-for="PublishDate"></span>
 
     </div>
-
+        <div class="mb-3">
+        <label for="formFileLg" class="form-label">Product Image</label>
+        <input class="form-control form-control-lg" asp-for="Image" id="formFileLg" type="file">
+    </div>
     <button class="btn btn-primary" type="submit">Update</button>
 </form>
 
