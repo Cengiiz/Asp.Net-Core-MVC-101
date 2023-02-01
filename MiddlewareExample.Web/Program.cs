@@ -38,10 +38,11 @@ app.UseStaticFiles();
 
 app.Map("/ornek", app =>
 {
-    app.Run(async context =>
-    {
-        await context.Response.WriteAsync("Ornek url'i icin middleware");
-    });
+    //app.Run(async context =>
+    //{
+    //    await context.Response.WriteAsync("Ornek url'i icin middleware");
+    //});
+    
 });
 
 
