@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.FileProviders;
 using MyAspNetCoreApp.Web.Filters;
 using MyAspNetCoreApp.Web.Helpers;
 using MyAspNetCoreApp.Web.Models;
@@ -15,13 +16,15 @@ namespace MyAspNetCoreApp.Web.Controllers
         private readonly ProductRepository _productRepository;
         private IHelper _helper;
         private readonly IMapper _mapper;
-        public ProductsController(AppDbContext context, IHelper helper, IMapper mapper)//dependency injection pattern-constructor injection
+        private readonly IFileProvider _fileProvider;
+        public ProductsController(AppDbContext context, IHelper helper, IMapper mapper, IFileProvider fileProvider)//dependency injection pattern-constructor injection
         {
             //DI Container
             _productRepository = new ProductRepository();
             _context = context;
             _helper = helper;
             _mapper = mapper;
+            _fileProvider = fileProvider;
             //Linq method
             //if (!_context.Products.Any())
             //{
