@@ -48,6 +48,8 @@ namespace MyAspNetCoreApp.Web.ViewModels
         public IFormFile? Image { get; set; }
         [ValidateNever]
         public string? ImagePath { get; set; }
+        [Required(ErrorMessage = "The category field is required!!!")]
+        public int CategoryId { get; set; }
 
     }
 }

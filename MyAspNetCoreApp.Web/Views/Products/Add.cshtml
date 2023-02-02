@@ -62,6 +62,16 @@
         <input class="form-control" asp-for="PublishDate">
         <span class="text-danger" asp-validation-for="PublishDate"></span>
     </div>
+
+    <div class="mb-5">
+        <select asp-for="CategoryId" asp-items="@ViewBag.categorySelect" class="form-select" aria-label="Default select example">
+            <option value="">Choose category</option>
+        </select>
+    </div>
+
+
+
+
     <div class="mb-3">
         <label for="formFileLg" class="form-label">Product Image</label>
         <input class="form-control form-control-lg" asp-for="Image" id="formFileLg" type="file">

@@ -98,6 +98,10 @@ namespace MyAspNetCoreApp.Web.Controllers
                 new(){Data="Red",Value="Red"},
                 new(){Data="Yellow",Value="Yellow"}
             },"Value","Data");
+            var categories = _context.Category.ToList();
+            ViewBag.categorySelect = new SelectList(categories,"Id","Name");
+
+
             return View();
         }
         [HttpPost]
