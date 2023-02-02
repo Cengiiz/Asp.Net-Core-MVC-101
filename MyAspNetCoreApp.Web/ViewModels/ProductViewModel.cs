@@ -51,5 +51,7 @@ namespace MyAspNetCoreApp.Web.ViewModels
         [Required(ErrorMessage = "The category field is required!!!")]
         public int CategoryId { get; set; }
 
+        public string? CategoryName { get; set; }
+
     }
 }
