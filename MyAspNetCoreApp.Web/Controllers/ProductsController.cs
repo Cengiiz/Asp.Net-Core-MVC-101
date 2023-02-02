@@ -190,6 +190,8 @@ namespace MyAspNetCoreApp.Web.Controllers
                     new(){Data="Red",Value="Red"},
                     new(){Data="Yellow",Value="Yellow"}
                 }, "Value", "Data");
+            var categories = _context.Category.ToList();
+            ViewBag.categorySelect = new SelectList(categories, "Id", "Name");
             return result;
 
         }
@@ -218,7 +220,8 @@ namespace MyAspNetCoreApp.Web.Controllers
                 }, "Value", "Data", product.Color);
 
             }
-
+            var categories = _context.Category.ToList();
+            ViewBag.categorySelect = new SelectList(categories, "Id", "Name",product.CategoryId);
             return View(_mapper.Map<ProductUpdateViewModel>(product));
         }
 
@@ -245,7 +248,8 @@ namespace MyAspNetCoreApp.Web.Controllers
                         new(){Data="Red",Value="Red"},
                         new(){Data="Yellow",Value="Yellow"}
                     }, "Value", "Data", newProduct.Color);
-
+                    var categories = _context.Category.ToList();
+                    ViewBag.categorySelect = new SelectList(categories, "Id", "Name",newProduct.CategoryId);
                 }
                 return View();
             }

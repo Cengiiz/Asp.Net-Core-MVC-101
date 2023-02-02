@@ -48,6 +48,8 @@ namespace MyAspNetCoreApp.Web.ViewModels
         public IFormFile? Image { get; set; }
         [ValidateNever]
         public string? ImagePath { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
 
     }
 }

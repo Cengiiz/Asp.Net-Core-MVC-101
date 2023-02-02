@@ -8,7 +8,10 @@
 
 
 <form asp-controller="products" asp-action="update" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id"/>
+    <input type="hidden" asp-for="ImagePath" />
     
+
     <div>
         <img style="width:100px;height:100px" src="@(String.IsNullOrEmpty(Model.ImagePath)? "/images/noimage.png":"/images/"+Model.ImagePath)"/>
     </div>
@@ -76,7 +79,11 @@
         <label asp-for="PublishDate" class="form-label">Publish Date :</label>
         <input class="form-control" asp-for="PublishDate">
         <span class="text-danger" asp-validation-for="PublishDate"></span>
-
+    <div class="mb-5">
+    <select asp-for="CategoryId" asp-items="@ViewBag.categorySelect" class="form-select" aria-label="Default select example">
+        <option value="">Choose category</option>
+    </select>
+    </div>
     </div>
         <div class="mb-3">
         <label for="formFileLg" class="form-label">Product Image</label>
